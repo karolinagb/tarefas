@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TarefaStoreRequest;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use App\Services\TarefaService;
+use Illuminate\Support\Facades\Log;
+use App\Http\Requests\TarefaStoreRequest;
 
 class TarefaController extends Controller
 {
+    public function __construct(protected TarefaService $tarefa_service)
+    {
+        # code...
+    }
     /**
      * Display a listing of the resource.
      */
@@ -27,9 +33,10 @@ class TarefaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TarefaStoreRequest $tarefa)
+    public function store(TarefaStoreRequest $tarefa_store_request)
     {
-        //
+        $this->tarefa_service->create($tarefa_store_request->descricao);
+        return view('tarefas.index');
     }
 
     /**

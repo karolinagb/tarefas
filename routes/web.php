@@ -3,8 +3,8 @@
 use App\Http\Controllers\TarefaController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(TarefaController::class)->group(function (){
 
+Route::controller(TarefaController::class)->group(function (){
     Route::name('tarefas.')->group(function (){
         Route::get('/index', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
