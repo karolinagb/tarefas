@@ -6,9 +6,10 @@
 @section('content')
     <form action="{{ route('tarefas.store') }}" method="post">
         @csrf
+        @method('POST')
         <div class="form-group">
-        <label name="descricao" for="descricao">Descrição da tarefa</label>
-        <input type="text" class="form-control" id="descricao" placeholder="Digite...">
+        <label for="descricao">Descrição da tarefa</label>
+        <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite...">
         </div>
         <button type="submit">Salvar</button>
     </form>
