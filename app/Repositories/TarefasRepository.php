@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Tarefa;
+use Illuminate\Database\Eloquent\Collection;
 
 class TarefasRepository
 {
@@ -16,5 +17,10 @@ class TarefasRepository
     public function find(int $id): Tarefa
     {
         return Tarefa::findOrFail($id);
+    }
+
+    public function getAll(): Collection
+    {
+        return Tarefa::orderBy('id')->get();
     }
 }

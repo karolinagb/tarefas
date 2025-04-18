@@ -19,7 +19,8 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        //
+        $tarefas = $this->tarefa_service->getAll();
+        return view('tarefas.index', ['tarefas' => $tarefas]);
     }
 
     /**
@@ -36,7 +37,7 @@ class TarefaController extends Controller
     public function store(TarefaStoreRequest $tarefa_store_request)
     {
         $this->tarefa_service->create($tarefa_store_request->descricao);
-        return view('tarefas.index');
+        return to_route('tarefas.index');
     }
 
     /**

@@ -1,12 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Criado com sucesso</h2>
-</body>
-</html>
+@extends('layout')
+@section('title', 'Lista de Tarefas')
+@section('content')
+    <h1>Lista de Tarefas</h1>
+    <a href="{{ route('tarefas.create') }}">Criar nova tarefa</a>
+
+    @if ($tarefas->isEmpty())
+        <p>Nenhuma tarefa encontrada.</p>
+    @else
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Criada em</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($tarefas as $tarefa)
+                    <tr>
+                        <td>{{ $tarefa->id }}</td>
+                        <td>{{ $tarefa->descricao }}</td>
+                        <td>{{ $tarefa->created_at }}</td>
+                        <td>
+                            <a href="{{ route('tarefas.show', $tarefa->id) }}">Ver</a>
+                            <a href="{{ route('tarefas.edit', $tarefa->id) }}">Editar</a>
+                            <form action="{{ route('tarefas.destroy', $tarefa->id) }}" method="post" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
+@endsection
+@section('scripts')
+    <script>
+        // Adicione aqui qualquer script JavaScript necessário para a página
+    </script>
+@endsection
+@section('styles')
+    <style>
+        /* Adicione aqui qualquer estilo CSS necessário para a página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+@endsection

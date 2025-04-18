@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Tarefa;
 use App\Repositories\TarefasRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class TarefaService
 {
@@ -19,6 +20,11 @@ class TarefaService
     public function find(int $id): Tarefa
     {
         return $this->tarefas_repository->find($id);
+    }
+
+    public function getAll(): Collection
+    {
+        return $this->tarefas_repository->getAll();
     }
 }
 
