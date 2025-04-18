@@ -26,6 +26,11 @@ class TarefaService
     {
         return $this->tarefas_repository->getAll();
     }
+
+    public function update(int $id, string $descricao)
+    {
+        return $this->tarefas_repository->update($id, $descricao);
+    }
 }
 
 

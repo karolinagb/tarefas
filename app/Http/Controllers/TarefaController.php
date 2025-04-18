@@ -54,15 +54,17 @@ class TarefaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $tarefa = $this->tarefa_service->find($id);
+        return view('tarefas.edit', ['tarefa' => $tarefa]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TarefaStoreRequest $request, string $id)
     {
-        //
+        $tarefa = $this->tarefa_service->update($id, $request->descricao);
+        return to_route('tarefas.show', ['id' => $tarefa->id])->with('success', 'Tarefa atualizada com sucesso!');
     }
 
     /**

@@ -23,4 +23,15 @@ class TarefasRepository
     {
         return Tarefa::orderBy('id')->get();
     }
+
+    public function update(int $id, string $descricao)
+    {
+        $tarefa = Tarefa::findOrFail($id);
+        $tarefa->update([
+            'descricao' => $descricao
+        ]);
+        return $tarefa;
+    }
+
+   
 }
