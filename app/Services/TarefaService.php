@@ -31,6 +31,11 @@ class TarefaService
     {
         return $this->tarefas_repository->update($id, $descricao);
     }
+
+    public function destroy(int $id)
+    {
+        $this->tarefas_repository->destroy($id);
+    }
 }
 
 

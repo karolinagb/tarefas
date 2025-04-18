@@ -70,8 +70,9 @@ class TarefaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $this->tarefa_service->destroy($id);
+        return to_route('tarefas.index')->with('success', 'Tarefa excluída com sucesso!');
     }
 }

@@ -33,5 +33,9 @@ class TarefasRepository
         return $tarefa;
     }
 
-   
+   public function destroy(int $id)
+   {
+        $tarefa = Tarefa::findOrFail($id);
+        $tarefa->delete();
+   }
 }
