@@ -44,7 +44,8 @@ class TarefaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $tarefa = $this->tarefa_service->find($id);
+        return view('tarefas.show', ['tarefa' => $tarefa]);
     }
 
     /**

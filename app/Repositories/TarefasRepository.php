@@ -12,4 +12,9 @@ class TarefasRepository
             'descricao' => $descricao
         ]);
     }
+
+    public function find(int $id): Tarefa
+    {
+        return Tarefa::findOrFail($id);
+    }
 }
